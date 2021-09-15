@@ -1,4 +1,4 @@
-package com.ceiba.usuario.controlador;
+package com.ceiba.reserva.controlador;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.core.Is.is;
@@ -6,7 +6,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.ceiba.ApplicationMock;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +15,14 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.ceiba.ApplicationMock;
+import com.ceiba.reserva.controlador.ConsultaControladorReserva;
+
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes= ApplicationMock.class)
-@WebMvcTest(ConsultaControladorUsuario.class)
-public class ConsultaControladorUsuarioTest {
-
+@WebMvcTest(ConsultaControladorReserva.class)
+public class ConsultaControladorReservaTest {
+	
     @Autowired
     private MockMvc mocMvc;
 
@@ -29,12 +31,11 @@ public class ConsultaControladorUsuarioTest {
         // arrange
 
         // act - assert
-        mocMvc.perform(get("/usuarios")
+        mocMvc.perform(get("/reservas")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].nombre", is("test")));
+                .andExpect(jsonPath("$[0].datosCliente", is("DATOS PRUEBA")));
     }
-
 
 }

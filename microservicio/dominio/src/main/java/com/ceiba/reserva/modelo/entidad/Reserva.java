@@ -8,7 +8,6 @@ import static com.ceiba.dominio.ValidadorArgumento.validarMenorNoIgual;
 
 import java.time.Duration;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
@@ -102,7 +101,7 @@ public class Reserva {
     	validarMenor(horaFin, HORA_MAXIMA, LA_HORA_FINAL_DEBE_SER_MENOR_QUE_HORA_MAXIMA);
     	if(fechaInicio.equals(LocalDate.now())){
     		validarMenor(LocalTime.now().plusHours(DIFERENCIA_HORA_MAXIMA),horaInicio, LA_HORA_INICIAL_DEBE_SER_MAYOR_2_HORAS);
-    	};
+    	}
     	if(tipoReserva.equals(tipoReservas.FECHA.toString())) {
     		validarMenor(fechaInicio, fechaFin, LA_FECHA_INICIAL_DEBE_SER_MENOR_QUE_FECHA_FINAL);	
     	}else if(tipoReserva.equals(tipoReservas.HORA.toString())) {

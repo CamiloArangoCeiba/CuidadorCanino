@@ -6,5 +6,5 @@ set tipo_reserva = :tipoReserva,
 	hora_fin = :horaFin,
 	tipo_tarifa = :tipoTarifa,
 	valor_total_reserva = :valorTotalReserva,
-	datosCliente = :datosCliente
+	datos_cliente = :datosCliente
 where id = :id

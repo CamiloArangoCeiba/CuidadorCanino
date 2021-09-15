@@ -17,23 +17,14 @@ public class RepositorioReservaMysql implements RepositorioReserva {
 	
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
-    @SqlStatement(namespace="usuario", value="crear")
+    @SqlStatement(namespace="reserva", value="crear")
     private static String sqlCrear;
 
-    @SqlStatement(namespace="usuario", value="actualizar")
+    @SqlStatement(namespace="reserva", value="actualizar")
     private static String sqlActualizar;
 
-    @SqlStatement(namespace="usuario", value="eliminar")
+    @SqlStatement(namespace="reserva", value="eliminar")
     private static String sqlEliminar;
-
-    @SqlStatement(namespace="usuario", value="existe")
-    private static String sqlExiste;
-
-    @SqlStatement(namespace="usuario", value="existeExcluyendoId") 
-    private static String sqlExisteExcluyendoId;
-    
-    @SqlStatement(namespace="usuario", value="consultarPorId") 
-    private static String sqlConsultarId;
 
 
     public RepositorioReservaMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {

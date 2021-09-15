@@ -6,7 +6,7 @@ create table reserva (
  hora_inicio datetime not null,
  hora_fin datetime not null,
  tipo_tarifa varchar(10) not null,
- valor_total_reserva double (10,0) not null,
+ valor_total_reserva double not null,
  datos_cliente varchar(250) not null,
  primary key (id)
 );
