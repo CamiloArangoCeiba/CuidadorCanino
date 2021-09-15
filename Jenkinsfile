@@ -12,8 +12,7 @@ pipeline {
 
   //Una secci�n que define las herramientas preinstaladas en Jenkins
   tools {
-    jdk 'JDK8_Centos' //Preinstalada en la Configuración del Master
-    gradle 'Gradle4.5_Centos' //Preinstalada en la Configuración del Master
+    jdk 'JDK11_Centos' //Preinstalada en la Configuración del Master
   }
 
   //Aqui comienzan los items del Pipeline
@@ -21,32 +20,22 @@ pipeline {
     stage('Checkout') {
       steps {
         echo '------------>Checkout<------------'
-        checkout([
-          $class: 'GitSCM',
-          branches: [[name: '*/master']],
-          doGenerateSubmoduleConfigurations: false,
-          extensions: [],
-          gitTool: 'Default',
-          submoduleCfg: [],
-          userRemoteConfigs: [[
-            credentialsId: 'GitHub_CamiloArango',
-            url:'https://github.com/CamiloArangoCeiba/CuidadorCanino
-          ]]
-        ])
+        checkout scm
       }
     }
-
+    
     stage('Gradle permission') {
       steps {
-        sh "chmod +x ./gradlew"
+        sh "chmod +x ./microservicio/gradlew"
       }
     }
 
     stage('Compile & Unit Tests') {
       steps {
         echo '------------>Unit Tests<------------'
-        sh "./gradlew --b ./build.gradle clean compileJava"
-        sh "./gradlew --b ./build.gradle test"
+        sh 'chmod +x microservicio/gradlew'
+        sh './microservicio/gradlew --b ./microservicio/build.gradle clean'
+        sh './microservicio/gradlew --b ./microservicio/build.gradle test'
       }
     }
 
@@ -62,7 +51,7 @@ pipeline {
     stage('Build') {
       steps {
         echo '------------>Build<------------'
-        sh "./gradlew --b ./build.gradle build -x test"
+        sh "./microservicio/gradlew --b ./microservicio/build.gradle build -x test"
       }
     }
   }
@@ -73,7 +62,7 @@ pipeline {
     }
     success {
       echo 'This will run only if successful'
-      junit "build/test-results/test/*.xml"
+      junit '**/test-results/test/*.xml'
     }
     failure {
       echo 'This will run only if failed'
