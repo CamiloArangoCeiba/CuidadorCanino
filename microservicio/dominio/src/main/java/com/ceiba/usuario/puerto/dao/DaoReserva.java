@@ -11,5 +11,12 @@ public interface DaoReserva {
      * @return las reservas
      */
     List<DtoReserva> listar();
+    
+	/**
+     * Permite consultar una rserva por id 
+     * @param  id de la reserva
+     * @return la reserva
+     */
+    DtoReserva consultarPorId(Long id);
 
 }

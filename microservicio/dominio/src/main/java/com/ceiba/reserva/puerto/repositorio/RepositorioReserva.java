@@ -17,6 +17,7 @@ public interface RepositorioReserva {
     /**
      * Permite actualizar una reserva
      * @param usuario
+     * return registros modificados
      */
     void actualizar(Reserva reserva);
 
@@ -31,7 +32,7 @@ public interface RepositorioReserva {
      * @param fechaInicio, fechaFin, horaInicio, horaFin
      * @return si existen o no
      */
-    boolean existenReservas(LocalDate fechaInicio, LocalDate fechaFin, LocalTime horaInicio, LocalTime horaFin);
+    boolean existenReservas(Long id,LocalDate fechaInicio, LocalDate fechaFin, LocalTime horaInicio, LocalTime horaFin);
     
 
 }

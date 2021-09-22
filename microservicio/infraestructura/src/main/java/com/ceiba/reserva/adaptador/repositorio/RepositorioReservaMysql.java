@@ -25,6 +25,9 @@ public class RepositorioReservaMysql implements RepositorioReserva {
 
     @SqlStatement(namespace="reserva", value="eliminar")
     private static String sqlEliminar;
+    
+    @SqlStatement(namespace="reserva", value="existeReservasFechas") 
+    private static String sqlExisteReservasFechas;
 
 
     public RepositorioReservaMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
@@ -45,15 +48,20 @@ public class RepositorioReservaMysql implements RepositorioReserva {
 
     @Override
     public void actualizar(Reserva reserva) {
-        this.customNamedParameterJdbcTemplate.actualizar(reserva, sqlActualizar);
+        this.customNamedParameterJdbcTemplate.actualizarRegistros(reserva, sqlActualizar);
+    }
+    
+    @Override
+    public boolean existenReservas(Long id,LocalDate fechaInicio, LocalDate fechaFin, LocalTime horaInicio, LocalTime horaFin) {
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("id", id);
+        paramSource.addValue("fechaInicio", fechaInicio);
+        paramSource.addValue("fechaFin", fechaFin);
+        paramSource.addValue("horaInicio", horaInicio);
+        paramSource.addValue("horaFin", horaFin);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteReservasFechas,paramSource, Boolean.class);
     }
 
-
-	@Override
-	public boolean existenReservas(LocalDate fechaInicio, LocalDate fechaFin, LocalTime horaInicio, LocalTime horaFin) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 
 }

@@ -54,4 +54,9 @@ public class CustomNamedParameterJdbcTemplate {
 	public NamedParameterJdbcTemplate getNamedParameterJdbcTemplate() {
 		return this.namedParameterJdbcTemplate;
 	}
+	
+	public int actualizarRegistros(Object object,String sql) {
+		MapSqlParameterSource paramSource = crearParametros(object);
+		return this.namedParameterJdbcTemplate.update(sql, paramSource);
+	}
 }

@@ -20,7 +20,7 @@ private static final String EXISTEN_RESERVAS_PARA_LA_FECHA = "Ya existen reserva
     }
 
     private void validarReservasExistentes(Reserva reserva) {
-        boolean existe = this.repositorioReserva.existenReservas(reserva.getFechaFin(),reserva.getFechaFin(), reserva.getHoraInicio(),reserva.getHoraFin());
+        boolean existe = this.repositorioReserva.existenReservas(reserva.getId(),reserva.getFechaFin(),reserva.getFechaFin(), reserva.getHoraInicio(),reserva.getHoraFin());
         if(existe) {
             throw new ExcepcionDuplicidad(EXISTEN_RESERVAS_PARA_LA_FECHA);
         }
