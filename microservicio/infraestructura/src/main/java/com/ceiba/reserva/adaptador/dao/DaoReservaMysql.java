@@ -35,8 +35,7 @@ public class DaoReservaMysql implements DaoReserva {
 	public DtoReserva consultarPorId(Long id) {
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
 		paramSource.addValue("id", id);
-		DtoReserva dto = this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
 				.queryForObject(sqlConsultarPorId, paramSource, new MapeoReserva());
-		return dto;
 	}
 }

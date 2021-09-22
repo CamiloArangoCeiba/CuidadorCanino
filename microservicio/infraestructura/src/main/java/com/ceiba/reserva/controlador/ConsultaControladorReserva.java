@@ -2,7 +2,6 @@ package com.ceiba.reserva.controlador;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,14 +30,12 @@ public class ConsultaControladorReserva {
 	@GetMapping
 	@ApiOperation("Listar Reservas")
 	public List<DtoReserva> listar() {
-		System.out.println("listar");
 		return this.manejadorListarReservas.ejecutar();
 	}
 	
 	@GetMapping(value="/{id}")
 	@ApiOperation("Consultar Reserva")
 	public DtoReserva consultarPorId(@PathVariable Long id) {
-		System.out.println("consultarPorId");
 		return manejadorConsultarReserva.ejecutar(id);
 	}
 }

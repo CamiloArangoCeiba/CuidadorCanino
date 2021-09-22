@@ -42,10 +42,6 @@ public class ComandoControladorReserva {
     @PostMapping
     @ApiOperation("Crear Reserva")
     public ComandoRespuesta<Long> crear(@RequestBody ComandoReserva comandoReserva) {
-    	System.out.println("comandoReserva.getTipoReserva() " + comandoReserva.getTipoReserva());
-    	System.out.println("comandoReserva.getFechaInicio() " + comandoReserva.getFechaInicio());
-    	System.out.println("comandoReserva.getHoraFin() " + comandoReserva.getHoraFin());
-    	System.out.println("comandoReserva.getHoraInicio() " + comandoReserva.getHoraInicio());
         return manejadorCrearReserva.ejecutar(comandoReserva);
         
     }
@@ -53,14 +49,12 @@ public class ComandoControladorReserva {
     @DeleteMapping(value="/{id}")
 	@ApiOperation("Eliminar Reserva")
 	public void eliminar(@PathVariable Long id) {
-    	System.out.println("eliminar");
     	manejadorEliminarReserva.ejecutar(id);
 	}
 
 	@PutMapping(value="/{id}")
 	@ApiOperation("Actualizar Reserva")
 	public void actualizar(@RequestBody ComandoReserva comandoReserva,@PathVariable Long id) {
-		System.out.println("actualizar");
 		comandoReserva.setId(id);
 		manejadorActualizarReserva.ejecutar(comandoReserva);
 	}
